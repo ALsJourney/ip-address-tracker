@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import IpForm from './components/IpForm'
 
 function App() {
 
   return (
     <div className="App">
-      <h1></h1>
+      <IpForm />
     </div>
   )
 }
