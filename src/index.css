@@ -84,8 +84,6 @@ input {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
-  
 }
 
 .patternBg {
@@ -126,9 +124,49 @@ button {
   right: 15px;
 }
 
-input::placeholder{
+input {
+  text-indent: 15px;
+}
+.resultDiv {
+  display: flex;
+  justify-content: space-between;
+  
+  width: 900px;
+  height: 150px;
   position: relative;
-  left: 15px;
-  font-size: 18px;
+  bottom: 50px;
+  background-color: white;
+  border-radius: 20px;
 }
 
+.ipadd, .location, .timezone:not(.isp) {
+  display: flex;
+  flex-direction: column;
+  
+  width: 200px;
+  height: 100%;
+  /* Change border-right height */
+  
+  text-transform: uppercase;
+  border-right: 2px solid #eaeaea;
+  padding: 0 1rem;
+  
+}
+
+.innerDiv {
+  /* place in the middle of parent div */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  position: relative;
+  top: 50px;
+
+}
+.isp {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  width: 200px;
+  height: 100%;
+}
