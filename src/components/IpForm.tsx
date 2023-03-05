@@ -2,13 +2,24 @@ import React, { DOMElement, FC, useState } from "react";
 import PatternBg from "./../images/pattern-bg.png";
 import ArrowIcon from "./../images/icon-arrow.svg";
 import loc from "../images/icon-location.svg";
+import ResultDiv from "./ResultDiv";
 
 
-
-interface FormData {
+type FormData = {
     ip: string;
 };
+type Location = {
+    country: string,
+    region: string,
+    timezone: string,
 
+}
+type ResponseData = {
+    // IP Address, Location, Timezone, ISP
+    ip: string,
+    location: Location,
+    isp: string,
+}
 const apiKey = import.meta.env.VITE_IP_API_KEY;
 const IpForm: FC = () => {
 
@@ -21,7 +32,7 @@ const IpForm: FC = () => {
         });
     };
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<ResponseData>({ip: "192.212.174.101", location: {country: "NY", region: "Brooklyn", timezone: "UTC -05:00"}, isp: "SpaceX Starlink", });
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         // API call to ipfy.org
@@ -35,7 +46,10 @@ const IpForm: FC = () => {
             
             fetch(fetchurl)
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    setData(data)
+                    console.log(data)
+                })
                 .catch(error => console.error(error))
             
         }
@@ -68,6 +82,7 @@ const IpForm: FC = () => {
                         <button type="submit" onClick={handleSubmit}><img src={ArrowIcon} alt="Submit Button Arrow Icon" className="arrowIcon" /></button> 
                     </div>
                 </div>
+                <ResultDiv data={data} />
             </form>
         </div>
     );
